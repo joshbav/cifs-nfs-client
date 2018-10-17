@@ -1,0 +1,49 @@
+note this isn't working yet, likely because it's nfs v4, and/or using the same ip for server and client
+
+
+####### Beginning of NFS v4 client test
+
+# First we will start an NFS v4 server
+
+mkdir /tmp/nfs
+
+docker run -d --name nfsserver --privileged -v /tmp:/nfsshare -e SHARED_DIRECTORY=/nfsshare -e NFS_EXPORT_0='/container/path/foo *(no_root_squash,rw,no_subtree_check)' --network host itsthenetwork/nfs-server-alpine:latest
+
+### delete docker run -d \
+  --name nfsserver \
+  -v /tmp:/tmp \
+  -e NFS_EXPORT_0='/tmp *(fsid=0,ro,no_subtree_check)' \
+  --cap-add SYS_ADMIN \
+  -p 2049:2049 \
+  erichough/nfs-server
+
+
+docker ps
+
+docker run -it --network host --cap-add SYS_ADMIN joshbav/cifs-nfs-client bash
+
+mount -v -t nfs4 127.0.0.1:/ /nfs
+
+# See if it's mounted
+mount |grep nfs
+
+# Is there anything in /nfs? Yes, my host /tmp files
+ls /nfs
+
+# Let's create a file
+touch /nfs/new
+ls /nfs
+
+# Let's write to it
+echo update >/nfs/new
+
+# Let's read from it
+cat /nfs/new
+
+# exit container
+exit
+
+docker kill nfsserver
+docker rm nfsserver
+
+#### End of NFS client test
