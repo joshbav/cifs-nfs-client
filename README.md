@@ -24,25 +24,32 @@ Note all this can be automated with environment variables and a startup script
 `mount -t cifs //127.0.0.1/public /cifs -o user="user1",pass="password",sec=ntlm,vers=2.1`
 
 See if it's mounted
+
 `mount |grep cifs`
 
 Is there anything in /cifs? No
+
 `ls /cifs`
 
 Let's create a file
+
 `touch /cifs/new`
 `ls /cifs`
 
 Let's write to it
+
 `echo update >/cifs/new`
 
 Let's read from it
+
 `cat /cifs/new`
 
 Let's delete it
+
 `rm /cifs/new`
 
 Exit container
+
 `exit`
 
 `docker stop cifsserver`
