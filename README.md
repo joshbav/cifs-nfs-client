@@ -2,10 +2,7 @@
 
 First we will start a samba server
 
-`docker run -it --name cifsserver -p 139:139 -p 445:445 -d dperson/samba \
-            -u "user1;password" \
-            -s "public;/share;yes;no;yes;all;user1;user1" 
-`
+`docker run --name cifsserver -p 139:139 -p 445:445 -d dperson/samba -u "user1;password" -s "public;/share;yes;no;yes;all;user1;user1"`
 
 `docker ps`
 
