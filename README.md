@@ -1,4 +1,4 @@
-## Beginning of CIFS test
+#### Beginning of CIFS test
 
 First we will start a samba server
 
@@ -58,7 +58,7 @@ Exit container
 
 `docker rm cifsserver`
 
-End of CIFS client test
+#### End of CIFS client test
 
 
 
