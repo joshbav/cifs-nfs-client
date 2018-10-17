@@ -44,7 +44,7 @@ Let's read from it
 
 Let's delete it
 
-`rm /cifs/new`
+`rm -f /cifs/new`
 
 Exit container
 
