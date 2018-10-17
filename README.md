@@ -34,6 +34,7 @@ Is there anything in /cifs? No
 Let's create a file
 
 `touch /cifs/new`
+
 `ls /cifs`
 
 Let's write to it
@@ -52,7 +53,9 @@ Exit container
 
 `exit`
 
+
 `docker stop cifsserver`
+
 `docker rm cifsserver`
 
 End of CIFS client test
